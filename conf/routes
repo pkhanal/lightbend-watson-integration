@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+# Image Classification controller that classifies image in the given image url and detect faces
+GET    /imageClassification         controllers.VisualRecognitionController.classifyImage(imageUrl:String)
+# Translator controller that translates text from a language to another language based on query parameter
+GET    /translation                 controllers.TranslateController.translate(text:String, from:String, to:String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
