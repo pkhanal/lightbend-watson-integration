@@ -8,7 +8,10 @@ https://pkhanal.github.io/post/add-cognitive-capability-to-play-application/
 - copy credentials for Visual Recognition and Language translation service into conf/watson/conf
 
 ### Run
+Run following command from the project directory:
+```
 sbt run
+```
 
 ### Test Image Classification endpoint
 
@@ -19,7 +22,7 @@ curl -G "http://localhost:9000/imageClassification” --data-urlencode “imageU
 ### Test Langauge Translation endpoint
 
 ``
-curl -G "http://localhost:9000/translation" --data-urlencode "text=good bye" --data-urlencode "from=en" --data-urlencode "to=fr"
+curl -G "http://localhost:9000/translation" --data-urlencode "text=hello" --data-urlencode "from=en" --data-urlencode "to=fr"
 ``
 
 
