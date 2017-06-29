@@ -16,7 +16,7 @@ sbt run
 ### Test Image Classification endpoint
 
 ``
-curl -G "http://localhost:9000/imageClassification” --data-urlencode “imageUrl=https://visual-recognition-demo.mybluemix.net/images/samples/5.jpg"
+curl -G "http://localhost:9000/imageClassification" --data-urlencode "imageUrl=https://visual-recognition-demo.mybluemix.net/images/samples/5.jpg"
 ``
 
 ### Test Langauge Translation endpoint
