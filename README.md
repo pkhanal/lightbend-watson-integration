@@ -1,5 +1,8 @@
 # Adding cognitive capability to play application
 
+**Sample application for the blog post:**<BR />
+https://pkhanal.github.io/post/add-cognitive-capability-to-play-application/
+
 ### Setup
 - copy conf/sample.watson.conf to watson.conf
 - copy credentials for Visual Recognition and Language translation service into conf/watson/conf
