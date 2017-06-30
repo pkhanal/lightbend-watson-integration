@@ -6,13 +6,12 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.compat.java8.FutureConverters;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.concurrent.CompletionStage;
 
-import static akka.pattern.Patterns.ask;
+import static akka.pattern.PatternsCS.ask;
 
 
 @Singleton
@@ -27,7 +26,7 @@ public class TranslateController extends Controller {
 
     public CompletionStage<Result> translate(String text, String from, String to) {
         Translator.Message message = new Translator.Message(text, from, to);
-        return FutureConverters.toJava(ask(translator, message, 5000L))
+        return ask(translator, message, 5000L)
                 .thenApply(response -> ok((String) response));
     }
 

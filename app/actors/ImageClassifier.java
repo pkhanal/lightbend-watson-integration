@@ -1,8 +1,8 @@
 package actors;
 
 
+import akka.actor.AbstractActor;
 import akka.actor.Props;
-import akka.actor.UntypedAbstractActor;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyImagesOptions;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification;
@@ -12,7 +12,7 @@ import settings.SettingsImpl;
 import javax.inject.Singleton;
 
 @Singleton
-public class ImageClassifier extends UntypedAbstractActor {
+public class ImageClassifier extends AbstractActor {
 
     private final VisualRecognition service;
 
@@ -30,15 +30,16 @@ public class ImageClassifier extends UntypedAbstractActor {
     }
 
     @Override
-    public void onReceive(Object o) throws Throwable {
-        if (o instanceof ImageClassifier.Message) {
-            Message message = (Message) o;
-            ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
-                    .url(message.imageUrl)
-                    .build();
-            VisualClassification result = service.classify(options).execute();
-            sender().tell(result.toString(), getSelf());
-        }
+    public Receive createReceive() {
+        return receiveBuilder()
+                .match(Message.class, message -> {
+                    ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
+                            .url(message.imageUrl)
+                            .build();
+                    VisualClassification result = service.classify(options).execute();
+                    getSender().tell(result.toString(), getSelf());
+                })
+                .build();
     }
 
     // protocol
